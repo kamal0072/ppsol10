@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup-Here</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark m-2">
+        <div class="container">
+            <a class="navbar-brand" href="#">Account creation form</a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <p style="color:green">
+                    {% if messages %}
+                    {% for msg in messages %}
+                            <small {% if msg.tags %} class="{{msg.tags}}" {% endif %}>
+                                {{msg}} <a href="#">Login Here!!</a>
+                            </small>
+                    {% endfor %}
+                {% endif %}    
+                </p>
+                <form action="" method="post" novalidate>
+                    {% csrf_token %}
+                    {% for form in form %}
+                        {{form.label_tag}}
+                            {{form}}
+                        <small style="color:red;font-size:15px;">{{form.errors|striptags}}</small> <br>
+                    {% endfor %}
+                    <input class="btn btn-info mb-2" type="submit" value='Sign-Up'>
+                    <a href="{% url 'login' %}" class="btn btn-info mb-2">Login</a>
+                </form>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+    </div>
+</body>
+</html>

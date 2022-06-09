@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile of User</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark m-2">
+            <div class="container">
+                <a class="navbar-brand" href="#">Account creation form</a>
+                <a href="{% url 'logout' %}">LogOut</a>
+            </div>
+        </nav>
+        {% if messages %}
+        {% for msg in messages %}
+                <small {% if msg.tags %} class="{{msg.tags}}" {% endif %}>
+                    {{msg}}
+                </small>
+        {% endfor %}
+      {% endif %}
+        <div class="row">
+            <div class="col-8">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <center><h1>User Detail</h1></center>
+                        <tr>
+                            <th>Book ID</th>
+                            <th>Auther Name</th>
+                            <th>Date of Upload</th>
+                            <th>Books Images</th>
+                            <th>Download here!!</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in data %}
+                        <tr>
+                            <td scope="row">{{i.id}}</td>
+                            <td>{{i.auther_name}}</td>
+                            <td>{{i.uploaded_at}}</td>
+                            <td><img src="" alt="NA">{{i.books_img}}</td>
+                            <td>{{i.book_copy}}</td>
+                            <td><a href="{% url 'delete' i.pk %}">Delete</a>/<a href="{% url 'update' i.pk %}">Edit</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4">
+                <h1>Uplaod New Book!!</h1>
+                <form action="" method="post" novalidate>
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <input type="submit" value='Save' class='btn btn-success'>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
