@@ -1,0 +1,33 @@
+{% extends 'detail.html' %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Auther</th>
+                            <th>Email</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row">{{detail.name}}</td>
+                            <td>{{detail.auther}}</td>
+                            <td>{{detail.email}}</td>
+                            <td>{{detail.desc}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-6">
+                <a href="" download><img src="{{detail.picture.url}}" height='300' width='300' alt="This is Image of"></a>
+                <h4 class='text text-warning ml-5'>Title:{{detail.name}}</h4>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <center><a class='btn btn-success mb-2' href="{% url 'books' %}">Back</a></center>
+{% endblock content %}

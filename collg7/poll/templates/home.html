@@ -7,13 +7,71 @@
     <title>Home</title>
 </head>
 <body>
-        <h1>This is home templates!!!!</h1>
-        <h2>The Course name is:{{nm}}</h2>
-        <h2>The Course Address is:{{add}}</h2>
-        {% include 'base.html' with p='Php' d="django" only %}
-        <ul>
-            <li><a href="{% url 'index' %}">Index</a></li><br>
-            <li><a href="{% url 'page' %}">Page</a></li>
-        </ul>
+    {% if data %}
+    <h1>All The Data Of School</h1>
+        <table border="2">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Roll number</th>
+                <th>Address</th>
+                <th>Date of birth</th>
+                <th>Adhar number</th>
+                <th>Weight</th>
+                <th>Male</th>
+                <th>Email Address</th>
+                <th>News Portal</th>
+            </tr>
+            {% for data in data %}
+            <tr>
+                <td>{{data.id}}</td>
+                <td><a href="#">{{data.name}}</a></td>
+                <td>{{data.roll}}</td>
+                <td>{{data.address}}</td>
+                <td>{{data.dob}}</td>
+                <td>{{data.adhar}}</td>
+                <td>{{data.weight}}</td>
+                <td>{{data.male}}</td>
+                <td>{{data.email}}</td>
+                <td>{{data.news_portal}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <hr>
+        {% elif data2 %}
+         <table>
+            <tr><th></th></tr>
+         </table>
+        {% else %}
+        <h1>The Detail of:{{detail.name|title}}</h1>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Roll number</th>
+                <th>Address</th>
+                <th>Date of birth</th>
+                <th>Adhar number</th>
+                <th>Weight</th>
+                <th>Male</th>
+                <th>Email Address</th>
+                <th>News Portal</th>
+            </tr>
+            <tr>
+                <td>{{detail.id}}</td>
+                <td>{{detail.name}}</td>
+                <td>{{detail.roll}}</td>
+                <td>{{detail.address}}</td>
+                <td>{{detail.dob}}</td>
+                <td>{{detail.adhar}}</td>
+                <td>{{detail.weight}}</td>
+                <td>{{detail.male}}</td>
+                <td>{{detail.email}}</td>
+                <td>{{detail.news_portal}}</td>
+            </tr>
+        </table>
+        <a href="#">Check Another Candidate</a>
+        {% endif %}
+        <h4>The Sql Query:{{query}}</h4>
 </body>
 </html>

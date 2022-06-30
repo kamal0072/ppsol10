@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <style>
+        .errorlist{
+            color:red;
+            
+        }
+        ul{
+            list-style-type: none;
+        }
+        .helptext{
+            color:green;
+        }
+    </style>
+</head>
+<body>
+    <h2>The student Registration form</h2>
+    <table class="table" border='2'>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Roll number</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Color</th>
+                <th>Password</th>
+                <th>Password Confirmation</th>
+                <th>State</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in data %}
+            <tr>
+                <td scope="row">{{data.id}}</td>
+                <td>{{data.name}}</td>
+                <td>{{data.roll_no}}</td>
+                <td>{{data.address}}</td>
+                <td>{{data.email}}</td>
+                <td>{{data.color}}</td>
+                <td>{{data.pwd1}}</td>
+                <td>{{data.pwd2}}</td>
+                <td>{{data.state}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Save">
+    </form>
+</body>
+</html>

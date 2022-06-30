@@ -7,3 +7,6 @@ class Employee(models.Model):
     emp_code=models.CharField(max_length=10)
     joining_date=models.DateTimeField()
     address=models.TextField()
+
+    # def __str__(self):
+    #     return self.name
